@@ -1,0 +1,26 @@
+
+
+<div class="box" id=""></div>
+<div class="box" [class.bg-red]="true" id=""></div>
+<div class="box" id=""></div>
+<div class="box" id=""></div>
+<div class="box" id=""></div>
+<div class="row">
+    currentMove = this.striker[0];
+ <label for="">currentPosition : {{currentPosition}}</label>
+ <label for="">currentMove : {{currentMove}}</label>
+</div>
+<button (click)="backwardMove()"> back </button>
+   <button (click)="forwardMove()"> forwad </button>
+
+
+
+<div class="row">
+   <div *ngFor="let row of ludoArray">
+        <div class="box" [class.stamp]="row.stamp" > {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-red]="row.red"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-yellow]="row.yellow"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-green]="row.green"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-blue]="row.blue"> {{row.pos}}</div>
+   </div>
+</div>
