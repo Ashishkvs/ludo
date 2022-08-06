@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { LudoComponent } from './ludo/ludo.component';
 import { MatrixComponent } from './matrix/matrix.component';
 import { MatrixSampleComponent } from './matrix-sample/matrix-sample.component';
+import { LudoBoxComponent } from './ludo-box/ludo-box.component';
+import { FlexSampleComponent } from './flex-sample/flex-sample.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LudoComponent,
     MatrixComponent,
-    MatrixSampleComponent
+    MatrixSampleComponent,
+    LudoBoxComponent,
+    FlexSampleComponent
   ],
   imports: [
     BrowserModule,

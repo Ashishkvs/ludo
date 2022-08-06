@@ -1,5 +1,288 @@
+<div class="ludo-controller">
+
+    <h4>Current turn</h4>
+    <div class="box" [class.bg-yellow]="currentMove == 'yellow'"></div>
+    <div class="box" [class.bg-green]="currentMove == 'green'"></div>
+    <div class="box" [class.bg-red]="currentMove == 'red'"></div>
+    <div class="box" [class.bg-blue]="currentMove == 'blue'"></div>
+    <div class="row">
+        <label for="">currentPosition : {{currentPosition}}</label>
+        <label for="">currentMove : {{currentMove}}</label>
+        <label for="">strikerMover : {{strikerMover}}</label>
+    </div>
+    <button (click)="backwardMove()"> back </button>
+    <button (click)="forwardMove()"> forwad </button>
+
+
+</div>
+
+<hr>
+
+
 <div class="row">
-    <div class="col-3">1</div>
-    <div class="col-3">2</div>
-    <div class="col-3">3</div>
+    <div class="col-3">
+        <app-ludo-box [color]="'bg-green'"></app-ludo-box>
+    </div>
+    <div class="col-3">Between Green & Yellow
+        <div class="row">
+           
+            <div class="col">
+                <div class="vt-reverse">
+                    <div *ngFor="let ludo of ludoArray.slice(46,52);">
+                        <!-- {{ludo | json}} -->
+        
+                        <div class="box"><label> {{ ludo.pos}}</label></div>
+        
+        
+                        <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                            <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                                <span class="small">{{ stkMover.striker }}</span>
+                            </div>
+                            <!-- <span>{{ stkMover.pos }}</span> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="" >
+                    <div *ngFor="let ludo of ludoArray.slice(52,53);">
+                        <!-- {{ludo | json}} -->
+        
+                        <div class="box"><label> {{ ludo.pos}}</label></div>
+        
+        
+                        <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                            <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                                <span class="small">{{ stkMover.striker }}</span>
+                            </div>
+                            <!-- <span>{{ stkMover.pos }}</span> -->
+                        </div>
+                    </div>
+                    <!-- // yellow-home -->
+                    <div class="" *ngFor="let home of homeArray">
+                        <div class="box bg-home-yellow"><label> {{'H' + home}} </label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="">
+                        <div class="box"><label> 0</label></div>
+                        <div class="box" *ngFor="let stkMover of findStrikerAtIndex(0)">
+                            <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                                <span class="small">{{ stkMover.striker }}</span>
+                            </div>
+                            <!-- <span>{{ stkMover.pos }}</span> -->
+                        </div>
+                        
+                    <div *ngFor="let ludo of ludoArray.slice(1,6);">
+                        <!-- {{ludo | json}} -->
+        
+                        <div class="box"><label> {{ ludo.pos}}</label></div>
+        
+        
+                        <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                            <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                                <span class="small">{{ stkMover.striker }}</span>
+                            </div>
+                            <!-- <span>{{ stkMover.pos }}</span> -->
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+           
+        </div>
+</div>
+    <div class="col-3">
+        <app-ludo-box [color]="'bg-yellow'"></app-ludo-box>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">Between Green & Blue
+        <div class="flex-space-hz">
+
+            <div *ngFor="let ludo of ludoArray.slice(38,46);">
+                <!-- {{ludo | json}} -->
+
+                <div class="box"><label> {{ ludo.pos}}</label></div>
+
+                <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                    <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                        <span class="small">{{ stkMover.striker }}</span>
+                    </div>
+                    <!-- <span>{{ stkMover.pos }}</span> -->
+                </div>
+            </div>
+        </div>
+        <div class="">
+
+            <div class="row-start">
+               
+                <div *ngFor="let ludo of ludoArray.slice(37,38);">
+                    <!-- {{ludo | json}} -->
+
+                    <div class="box"><label> {{ ludo.pos}}</label></div>
+
+                    <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                        <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                            <span class="small">{{ stkMover.striker }}</span>
+                        </div>
+                        <!-- <span>{{ stkMover.pos }}</span> -->
+                    </div>
+
+                </div>
+                <!-- //green home -->
+                <div class="home-row"  *ngFor="let home of homeArray">
+                    <div class="box bg-home-green"><label> {{'H' + home}} </label></div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="flex-space-hz hz-reverse">
+
+            <div *ngFor="let ludo of ludoArray.slice(31,37);">
+                <!-- {{ludo | json}} -->
+
+                <div class="box"><label> {{ ludo.pos}}</label></div>
+
+                <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                    <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                        <span class="small">{{ stkMover.striker }}</span>
+                    </div>
+                    <!-- <span>{{ stkMover.pos }}</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">M2</div>
+    <div class="col-3">Between Yellow & Red
+        <div class="flex-space-hz">
+
+            <div *ngFor="let ludo of ludoArray.slice(6,12);">
+                <!-- {{ludo | json}} -->
+
+                <div class="box"><label> {{ ludo.pos}}</label></div>
+
+                <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                    <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                        <span class="small">{{ stkMover.striker }}</span>
+                    </div>
+                    <!-- <span>{{ stkMover.pos }}</span> -->
+                </div>
+            </div>
+        </div>
+        <div class="">
+
+            <div class="row-end">
+                <!-- // red home -->
+                <div class="hz-reverse">
+                    <div class="" *ngFor="let home of homeArray">
+                        <div class="box bg-home-red"><label>  {{'H' + home}} </label></div>
+                    </div>
+                </div>
+                <div *ngFor="let ludo of ludoArray.slice(12,13);">
+                    <!-- {{ludo | json}} -->
+
+                    <div class="box"><label> {{ ludo.pos}}</label></div>
+
+                    <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                        <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                            <span class="small">{{ stkMover.striker }}</span>
+                        </div>
+                        <!-- <span>{{ stkMover.pos }}</span> -->
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="flex-space-hz hz-reverse">
+
+            <div *ngFor="let ludo of ludoArray.slice(13,20);">
+                <!-- {{ludo | json}} -->
+
+                <div class="box"><label> {{ ludo.pos}}</label></div>
+
+                <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                    <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                        <span class="small">{{ stkMover.striker }}</span>
+                    </div>
+                    <!-- <span>{{ stkMover.pos }}</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <app-ludo-box [color]="'bg-blue'"></app-ludo-box>
+    </div>
+    <div class="col-3">Between Red & Blue
+            <div class="row">
+               
+                <div class="col">
+                    <div class="vt-reverse">
+                        <div *ngFor="let ludo of ludoArray.slice(27,34);">
+                            <!-- {{ludo | json}} -->
+            
+                            <div class="box"><label> {{ ludo.pos}}</label></div>
+            
+            
+                            <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                                <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                                    <span class="small">{{ stkMover.striker }}</span>
+                                </div>
+                                <!-- <span>{{ stkMover.pos }}</span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="" >
+                        <div class="vt-reverse" *ngFor="let home of homeArray">
+                            <div class="box bg-home-blue"><label> {{'H' + home}} </label></div>
+                        </div>
+                        <div *ngFor="let ludo of ludoArray.slice(26,27);">
+                            <!-- {{ludo | json}} -->
+            
+                            <div class="box"><label> {{ ludo.pos}}</label></div>
+            
+            
+                            <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                                <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                                    <span class="small">{{ stkMover.striker }}</span>
+                                </div>
+                                <!-- <span>{{ stkMover.pos }}</span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="">
+                        <div *ngFor="let ludo of ludoArray.slice(20,26);">
+                            <!-- {{ludo | json}} -->
+            
+                            <div class="box"><label> {{ ludo.pos}}</label></div>
+            
+            
+                            <div class="box" *ngFor="let stkMover of findStrikerAtIndex(ludo.pos)">
+                                <div class="box" [class]="'bg-'+stkMover.strikerHolder">
+                                    <span class="small">{{ stkMover.striker }}</span>
+                                </div>
+                                <!-- <span>{{ stkMover.pos }}</span> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+               
+            </div>
+    </div>
+    <div class="col-3">
+        <app-ludo-box [color]="'bg-red'"></app-ludo-box>
+    </div>
 </div>

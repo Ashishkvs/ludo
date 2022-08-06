@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+.box{
+    width: 30px;
+    height: 30px;
+  
+    margin:5px;
+    display:inline-block;
+    border: 2px solid black;
+}
+.bg-yellow{
+    background-color:yellow;
+}
+.bg-red{
+    background-color: red;;
+}
+.bg-green{
+    background-color: green;
+}
+.bg-blue{
+    background-color: blue;
+}
+.home{
+    background-color: black;
+}
+.stamp{
+    background-color: grey;
+}
+.arrow{
+    /* background-color: pink; */
+    background-image: url('/left-arrow.jpg');
+}
+.red-home{
+    background-color: red;
+}
+.green-home{
+    background-color: green;
+}
+.yellow-home{
+    background-color: yellow;
+}
+.blue-home{
+    background-color: blue;
+}
+.striker{
+    width: 225px;
+    height: 225px;
+}
+.striker-box{
+    width: 100px;
+    height: 100px;
+    margin:5px;
+    display: inline-block;
+    border:2px solid black;
+    background-color: white;
+}
+.player{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
