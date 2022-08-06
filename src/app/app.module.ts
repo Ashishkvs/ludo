@@ -8,6 +8,7 @@ import { MatrixComponent } from './matrix/matrix.component';
 import { MatrixSampleComponent } from './matrix-sample/matrix-sample.component';
 import { LudoBoxComponent } from './ludo-box/ludo-box.component';
 import { FlexSampleComponent } from './flex-sample/flex-sample.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FlexSampleComponent } from './flex-sample/flex-sample.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

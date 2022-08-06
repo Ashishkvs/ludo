@@ -11,27 +11,28 @@ export class MatrixSampleComponent implements OnInit {
   totalPath = 52;
   maxBoxColor = 16;
   totalStamp = 8;
-  stampPosition = [1, 9, 14, 22, 27, 35, 40, 48];
+  stampPosition = [1, 9, 14, 22, 27, 35, 39, 48];
   arrowPosition = [];
   homeArray = [1,2,3,4,5]
+  nextStriker = 'red1';
 
   allStriker = [
-    { striker: 'red1', pos: 20, strikerHolder: 'red', startingPoint: 0, finalPoint: 52 },
-    { striker: 'red2', pos: 21, strikerHolder: 'red', startingPoint: 0, finalPoint: 52 },
-    { striker: 'red3', pos: 22, strikerHolder: 'red', startingPoint: 0, finalPoint: 52 },
-    { striker: 'red4', pos: 23, strikerHolder: 'red', startingPoint: 0, finalPoint: 52 },
-    { striker: 'blue1', pos: 24, strikerHolder: 'blue', startingPoint: 0, finalPoint: 52 },
-    { striker: 'blue2', pos: 25, strikerHolder: 'blue', startingPoint: 0, finalPoint: 52 },
-    { striker: 'blue3', pos: 1, strikerHolder: 'blue', startingPoint: 0, finalPoint: 52 },
-    { striker: 'blue4', pos: 2, strikerHolder: 'blue', startingPoint: 0, finalPoint: 52 },
-    { striker: 'green1', pos: 3, strikerHolder: 'green', startingPoint: 0, finalPoint: 52 },
-    { striker: 'green2', pos: 4, strikerHolder: 'green', startingPoint: 0, finalPoint: 52 },
-    { striker: 'green3', pos: 1, strikerHolder: 'green', startingPoint: 0, finalPoint: 52 },
-    { striker: 'green4', pos: 36, strikerHolder: 'green', startingPoint: 0, finalPoint: 52 },
-    { striker: 'yellow1', pos: 12, strikerHolder: 'yellow', startingPoint: 0, finalPoint: 52 },
+    { striker: 'red1', pos: 14, strikerHolder: 'red', startingPoint: 0, finalPoint: 52 },
+    { striker: 'red2', pos: 14, strikerHolder: 'red', startingPoint: 0, finalPoint: 52 },
+    { striker: 'red3', pos: 14, strikerHolder: 'red', startingPoint: 0, finalPoint: 52 },
+    { striker: 'red4', pos: 14, strikerHolder: 'red', startingPoint: 0, finalPoint: 52 },
+    { striker: 'blue1', pos: 28, strikerHolder: 'blue', startingPoint: 0, finalPoint: 52 },
+    { striker: 'blue2', pos: 28, strikerHolder: 'blue', startingPoint: 0, finalPoint: 52 },
+    { striker: 'blue3', pos: 28, strikerHolder: 'blue', startingPoint: 0, finalPoint: 52 },
+    { striker: 'blue4', pos: 28, strikerHolder: 'blue', startingPoint: 0, finalPoint: 52 },
+    { striker: 'green1', pos: 39, strikerHolder: 'green', startingPoint: 0, finalPoint: 52 },
+    { striker: 'green2', pos: 39, strikerHolder: 'green', startingPoint: 0, finalPoint: 52 },
+    { striker: 'green3', pos: 39, strikerHolder: 'green', startingPoint: 0, finalPoint: 52 },
+    { striker: 'green4', pos: 39, strikerHolder: 'green', startingPoint: 0, finalPoint: 52 },
+    { striker: 'yellow1', pos: 1, strikerHolder: 'yellow', startingPoint: 0, finalPoint: 52 },
     { striker: 'yellow2', pos: 1, strikerHolder: 'yellow', startingPoint: 0, finalPoint: 52 },
-    { striker: 'yellow3', pos: 13, strikerHolder: 'yellow', startingPoint: 0, finalPoint: 52 },
-    { striker: 'yellow4', pos: 14, strikerHolder: 'yellow', startingPoint: 0, finalPoint: 52 },
+    { striker: 'yellow3', pos: 1, strikerHolder: 'yellow', startingPoint: 0, finalPoint: 52 },
+    { striker: 'yellow4', pos: 1, strikerHolder: 'yellow', startingPoint: 0, finalPoint: 52 },
 
   ];
   
@@ -49,7 +50,7 @@ export class MatrixSampleComponent implements OnInit {
       let obj = { pos: i, red: false, blue: false, green: false, yellow: false, stamp: false };
       //stamp logic
       if (this.stampPosition.find(data => data == i)) {
-        obj.stamp = true;
+          obj.stamp = true;
       }
 
       this.ludoArray.push(obj);
@@ -96,5 +97,26 @@ export class MatrixSampleComponent implements OnInit {
     let strikers = this.allStriker.filter(striker => striker.pos == index);
     // let strikers = this.allStriker.filter(striker => striker.pos == index).map( data => data.striker);
     return strikers;
+  }
+
+  nextMove = 1;
+  onNextMove(striker :string) {
+    this.nextMove = Math.floor(Math.random() * (7 - 1) + 1) ;
+
+    this.updateStrikerPosition(this.nextMove, striker)
+  }
+
+  updateStrikerPosition(increaseIndexBY:number,  striker: string) {
+    debugger;
+    let tmpStriker: any = this.allStriker.find(stk => stk.striker == striker);
+    //update striker pos and re push
+    tmpStriker.pos = tmpStriker.pos +  increaseIndexBY;
+    this.allStriker[tmpStriker[0].index] = tmpStriker;
+
+    //forward position on board
+    this.currentMove = striker;
+    this.currentPosition = tmpStriker.pos +  increaseIndexBY;
+    this.forwardMove();
+
   }
 }

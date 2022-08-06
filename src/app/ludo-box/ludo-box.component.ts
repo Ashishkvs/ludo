@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-ludo-box',
@@ -10,6 +10,7 @@ export class LudoBoxComponent implements OnInit {
   constructor() { }
 
   @Input() color:string = 'green'
+  // @Output() currentStriker = new EventEmitter<string>();
   ngOnInit(): void {
   }
 
