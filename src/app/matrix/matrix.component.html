@@ -16,11 +16,50 @@
 
 
 <div class="row">
-   <div *ngFor="let row of ludoArray">
-        <div class="box" [class.stamp]="row.stamp" > {{row.pos}}</div>
-        <div class="box" [class.stamp]="row.stamp" [class.bg-red]="row.red"> {{row.pos}}</div>
+   <div class="col" *ngFor="let row of ludoArray ; index as index">
+        <div class="box" [class.stamp]="row.stamp" >
+            <label for="">{{row.pos}}</label>
+        </div>
+        <!-- <p>{{findStrikerAtIndex(index) | json}}</p> -->
+        <div class="d-flex" *ngFor="let stkMover of findStrikerAtIndex(index)">
+            <span >{{ stkMover.striker }}</span>
+            <div class="player" [class]="'bg-'+stkMover.strikerHolder"></div>
+           <span>{{ stkMover.pos }}</span>
+        </div>
+        <!-- <div class="box" [class.stamp]="row.stamp" [class.bg-red]="row.red"> {{row.pos}}</div>
         <div class="box" [class.stamp]="row.stamp" [class.bg-yellow]="row.yellow"> {{row.pos}}</div>
         <div class="box" [class.stamp]="row.stamp" [class.bg-green]="row.green"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-blue]="row.blue"> {{row.pos}}</div> -->
+
+
+        <!-- <div class="box" [class.stamp]="row.stamp" [class.bg-red]="row.red"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-red]="row.red"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-red]="row.red"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-red]="row.red"> {{row.pos}}</div>
+
+        <div class="box" [class.stamp]="row.stamp" [class.bg-yellow]="row.yellow"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-yellow]="row.yellow"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-yellow]="row.yellow"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-yellow]="row.yellow"> {{row.pos}}</div>
+
+        <div class="box" [class.stamp]="row.stamp" [class.bg-green]="row.green"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-green]="row.green"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-green]="row.green"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-green]="row.green"> {{row.pos}}</div>
+
         <div class="box" [class.stamp]="row.stamp" [class.bg-blue]="row.blue"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-blue]="row.blue"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-blue]="row.blue"> {{row.pos}}</div>
+        <div class="box" [class.stamp]="row.stamp" [class.bg-blue]="row.blue"> {{row.pos}}</div> -->
+
+        
    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col" *ngFor="let stkMover of allStriker">
+        <span >{{ stkMover.striker }}</span>
+        <div class="box" [class]="'bg-'+stkMover.strikerHolder"></div>
+       <span>{{ stkMover.pos }}</span>
+    </div>
 </div>

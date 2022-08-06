@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LudoComponent } from './ludo/ludo.component';
 import { MatrixComponent } from './matrix/matrix.component';
+import { MatrixSampleComponent } from './matrix-sample/matrix-sample.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LudoComponent,
-    MatrixComponent
+    MatrixComponent,
+    MatrixSampleComponent
   ],
   imports: [
     BrowserModule,
